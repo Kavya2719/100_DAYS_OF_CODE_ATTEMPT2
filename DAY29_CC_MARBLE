@@ -1,0 +1,80 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define iofast() ios_base::sync_with_stdio(false); cin.tie(NULL);
+#define ff first
+#define ss second
+#define all(v) v.begin(),v.end()
+
+#define yes cout << "YES\n"
+#define no cout << "NO\n"
+#define ccase(t) "Case #" << t << ": "
+//#define lp(i,x,sz) for(int i=x;i<sz;i++)
+typedef long long ll;
+
+const int N = (int)2e5 + 10;
+const int inf = (int)1e9+10;
+const int M = (int)1e9 + 7;
+
+
+
+void RadheRadhe(int t,bool kavya2719 = 1){
+   int sz;
+   cin >> sz;
+   
+   string a,b;
+   cin >> a >> b;
+   
+   map<char,bool>vowel={{'a',1},{'e',1},{'i',1},{'o',1},{'u',1}};
+   int count[2]={0};
+   int cost=0;
+   map<char,int> m[2];
+   
+   for(int i=0;i<sz;++i){
+     if(a[i]==b[i]) continue;
+     if(a[i]=='?'){
+       count[ vowel[b[i]] ]++;
+       m[ vowel[b[i]] ][ b[i] ]++;
+     } 
+     else if(b[i]=='?'){
+       count[ vowel[a[i]] ]++;
+       m[ vowel[a[i]] ][ a[i] ]++;
+     } 
+     else{
+       if(vowel[a[i]]==vowel[b[i]]) cost+=2;
+       else cost++;
+     }
+   }
+   
+   int v=0,c=0;
+   for(auto &[x,y] : m[1]){
+     v=max(v,y);
+   }
+   for(auto &[x,y] : m[0]){
+     c=max(c,y);
+   }
+   
+   int cost_c = count[1] + 2*(count[0]-c);
+   int cost_v = count[0] + 2*(count[1]-v);
+   
+   cost += min(cost_c,cost_v);
+   
+   cout << cost << "\n";
+}
+
+
+void phle_ka_kaam(){
+   
+}
+
+
+int main()
+{
+    iofast();
+    phle_ka_kaam();
+    
+    int TTTT=1;
+    cin >> TTTT;
+    for(int i=1;i<=TTTT;i++)
+       RadheRadhe(i);
+}
